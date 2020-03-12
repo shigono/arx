@@ -1,0 +1,16 @@
+DATA: 
+  FILE = estE5_data.dat;
+VARIABLE: 
+  NAMES = y x; 
+ANALYSIS:
+  ESTIMATOR = BAYES;
+  BITERATIONS = (2000);
+MODEL:
+  v by (&1);
+  v;
+  v on v&1; 
+  y on v@1 x;
+  [y@0];
+  y@0;
+SAVEDATA: 
+  result = estE5_result.dat;
