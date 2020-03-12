@@ -519,9 +519,14 @@ plotData.1 <- function(dfData, WORKDIR){
   g <- g + geom_hline(yintercept = 0, color ="gray")
   g <- g + scale_color_discrete(name = NULL)
   g <- g + labs(y = "value")
-  g <- g + facet_wrap(~ fRho)
+  g <- g + facet_wrap(~ fRho, ncol = 6)
   g <- g + theme_bw()
+  g <- g + theme(
+    legend.position="bottom",
+    axis.text.x = element_text(size = 7)
+  )
   print(g)
+  ggsave(paste0(WORKDIR, "/plotData.1.jpg"), width = 12, height = 8, units = "cm")
 
 }
 plotDFtest.1 <- function(dfDFtest, WORKDIR){
@@ -543,7 +548,12 @@ plotDFtest.1 <- function(dfDFtest, WORKDIR){
   g <- g + ylim(0, 1)
   g <- g + labs(x = NULL, y = "H0(単位根過程である)が棄却されなかった割合(5%水準)")
   g <- g + theme_bw()
+  g <- g + theme(
+    axis.title.y = element_text(size = 9), 
+    axis.text.x = element_text(size = 8)
+  )
   print(g)
+  ggsave(paste0(WORKDIR, "/plotDFtest.1.jpg"), width = 12, height = 8, units = "cm")
 }
 plotEstB2.2 <- function(dfEstB2, WORKDIR){
   # rhoとbetaの散布図
@@ -562,11 +572,11 @@ plotEstB2.2 <- function(dfEstB2, WORKDIR){
     color = "red"
   )
   g <- g + geom_point(alpha = 0.3, size = 1)
-  g <- g + facet_wrap(~ fRho)
+  g <- g + facet_wrap(~ fRho, ncol = 6)
   g <- g + labs(x = "hat(beta)", y = "hat(phi)", title = "B2: stationary AR(1) error, MLE")
   g <- g + theme_bw()
   print(g)
-  
+  ggsave(paste0(WORKDIR, "/plotB2.2.jpg"), width = 12, height = 8, units = "cm")
 }
 plotEstStat.1 <- function(dfEstStat, WORKDIR){
   # plot by fApproach
@@ -578,28 +588,35 @@ plotEstStat.1 <- function(dfEstStat, WORKDIR){
     aes(y = gMean, x = gRho, label = as.character(fModel), group = fModel, color = fModel)
   )
   g1 <- g1 + geom_hline(yintercept = 1)
-  g1 <- g1 + geom_text()
+  g1 <- g1 + geom_text(size=3)
   g1 <- g1 + geom_line()
   g1 <- g1 + labs(x = "rho", y = "mean(hat(beta))")
   g1 <- g1 + scale_color_discrete(guide = FALSE)
   g1 <- g1 + facet_grid(~ fApproach)
   g1 <- g1 + theme_bw()
-  print(g1)
+  g1 <- g1 + theme(
+    axis.text.x = element_text(size = 6)
+  )
+  # print(g1)
   
   g2 <- ggplot(
     data = dfEstStat, 
     aes(y = gRMSE, x = gRho, label = as.character(fModel), group = fModel, color = fModel)
   )
-  g2 <- g2 + geom_text()
+  g2 <- g2 + geom_text(size=3)
   g2 <- g2 + geom_line()
   g2 <- g2 + labs(x = "rho", y = "RMSE(hat(beta))")
   g2 <- g2 + scale_color_discrete(guide = FALSE)
   g2 <- g2 + facet_grid(~ fApproach)
   g2 <- g2 + theme_bw()
+  g2 <- g2 + theme(
+    axis.text.x = element_text(size = 6)
+  )
   # print(g2)
   
   g <- g1 + g2 + plot_layout(ncol = 1)
   print(g)
+  ggsave(paste0(WORKDIR, "/plotEstStat.1.jpg"), width = 12, height = 8, units = "cm")
   
 }
 plotEstStat.2 <- function(dfEstStat, WORKDIR){
@@ -650,7 +667,8 @@ plotEstStat.3 <- function(dfEstStat, WORKDIR){
   # g <- g + facet_grid(~ fApproach)
   g <- g + theme_bw()
   print(g)
-
+  ggsave(paste0(WORKDIR, "/plotEstStat.3.jpg"), width = 12, height = 8, units = "cm")
+  
 
 }
 plotEstStat.4 <- function(dfEstStat, WORKDIR){
@@ -667,16 +685,15 @@ plotEstStat.4 <- function(dfEstStat, WORKDIR){
   # g <- g + facet_grid(~ fApproach)
   g <- g + theme_bw()
   print(g)
+  ggsave(paste0(WORKDIR, "/plotEstStat.4.jpg"), width = 12, height = 8, units = "cm")
   
   
 }
 # = = = = = = 
 
-# directory
-BASEDIR <- "D:/ono/OneDrive/Study/202003ARX/R"
-WORKDIR <- "C:/work"
-# BASEDIR <- "C:/Users/ono/OneDrive/Study/202003ARX/R"
-# WORKDIR <- "C:/ono/work"
+## set directory
+## BASEDIR <- "/hoge/hoge"
+## WORKDIR <- "/hoge/hoge"
 
 library(tidyverse)
 
@@ -748,4 +765,4 @@ library(tidyverse)
 # plotEstStat.1 (dfEstStat, WORKDIR)
 # plotEstStat.2 (dfEstStat, WORKDIR)
 # plotEstStat.3 (dfEstStat, WORKDIR)
-# plotEstStat.4 (dfEstStat, WORKDIR)
+plotEstStat.4 (dfEstStat, WORKDIR)
