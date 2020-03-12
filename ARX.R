@@ -697,72 +697,72 @@ plotEstStat.4 <- function(dfEstStat, WORKDIR){
 
 library(tidyverse)
 
-# dfData <- makeData.1 ()
-# write_rds(dfData, paste0(BASEDIR, "/dfData.rds"))
-# dfData <- read_rds(paste0(BASEDIR, "/dfData.rds"))
-# 
-## dfDFtest <- makeDFtest.1 (dfData)
-# write_rds(dfDFtest, paste0(BASEDIR, "/dfDFtest.rds"))
-# dfDFtest <- read_rds(paste0(BASEDIR, "/dfDFtest.rds"))
+dfData <- makeData.1 ()
+write_rds(dfData, paste0(BASEDIR, "/dfData.rds"))
+dfData <- read_rds(paste0(BASEDIR, "/dfData.rds"))
 
-# dfEstA1 <- makeEstA1.1 (dfData)
-# write_rds(dfEstA1, paste0(BASEDIR, "/dfEstA1.rds"))
-# dfEstA1 <- read_rds(paste0(BASEDIR, "/dfEstA1.rds"))
+dfDFtest <- makeDFtest.1 (dfData)
+write_rds(dfDFtest, paste0(BASEDIR, "/dfDFtest.rds"))
+dfDFtest <- read_rds(paste0(BASEDIR, "/dfDFtest.rds"))
 
-# dfEstA3 <- makeEstA3.1 (dfData)
-# write_rds(dfEstA3, paste0(BASEDIR, "/dfEstA3.rds"))
-# dfEstA3 <- read_rds(paste0(BASEDIR, "/dfEstA3.rds"))
+dfEstA1 <- makeEstA1.1 (dfData)
+write_rds(dfEstA1, paste0(BASEDIR, "/dfEstA1.rds"))
+dfEstA1 <- read_rds(paste0(BASEDIR, "/dfEstA1.rds"))
 
-# dfEstB2 <- makeEstB2.1 (dfData)
-# write_rds(dfEstB2, paste0(BASEDIR, "/dfEstB2.rds"))
-# dfEstB2 <- read_rds(paste0(BASEDIR, "/dfEstB2.rds"))
+dfEstA3 <- makeEstA3.1 (dfData)
+write_rds(dfEstA3, paste0(BASEDIR, "/dfEstA3.rds"))
+dfEstA3 <- read_rds(paste0(BASEDIR, "/dfEstA3.rds"))
 
-# dfEstB3 <- makeEstB3.1 (dfData)
-# write_rds(dfEstB3, paste0(BASEDIR, "/dfEstB3.rds"))
-# dfEstB3 <- read_rds(paste0(BASEDIR, "/dfEstB3.rds"))
+dfEstB2 <- makeEstB2.1 (dfData)
+write_rds(dfEstB2, paste0(BASEDIR, "/dfEstB2.rds"))
+dfEstB2 <- read_rds(paste0(BASEDIR, "/dfEstB2.rds"))
 
-# dfEstB4 <- makeEstB4.1 (dfEstB2, dfEstB3, dfDFtest)
-# write_rds(dfEstB4, paste0(BASEDIR, "/dfEstB4.rds"))
-# dfEstB4 <- read_rds(paste0(BASEDIR, "/dfEstB4.rds"))
+dfEstB3 <- makeEstB3.1 (dfData)
+write_rds(dfEstB3, paste0(BASEDIR, "/dfEstB3.rds"))
+dfEstB3 <- read_rds(paste0(BASEDIR, "/dfEstB3.rds"))
 
-# dfEstC2 <- makeEstC2.1 (dfData)
-# write_rds(dfEstC2, paste0(BASEDIR, "/dfEstC2.rds"))
-# dfEstC2 <- read_rds(paste0(BASEDIR, "/dfEstC2.rds"))
+dfEstB4 <- makeEstB4.1 (dfEstB2, dfEstB3, dfDFtest)
+write_rds(dfEstB4, paste0(BASEDIR, "/dfEstB4.rds"))
+dfEstB4 <- read_rds(paste0(BASEDIR, "/dfEstB4.rds"))
 
-# dfEstD5 <- makeEstD5.1 (dfData)
-# write_rds(dfEstD5, paste0(BASEDIR, "/dfEstD5.rds"))
-# dfEstD5 <- read_rds(paste0(BASEDIR, "/dfEstD5.rds"))
+dfEstC2 <- makeEstC2.1 (dfData)
+write_rds(dfEstC2, paste0(BASEDIR, "/dfEstC2.rds"))
+dfEstC2 <- read_rds(paste0(BASEDIR, "/dfEstC2.rds"))
 
-# dfEstE5 <- makeEstE5.1 (dfData, BASEDIR, WORKDIR)
-# write_rds(dfEstE5, paste0(BASEDIR, "/dfEstE5.rds"))
-# dfEstE5 <- read_rds(paste0(BASEDIR, "/dfEstE5.rds"))
+dfEstD5 <- makeEstD5.1 (dfData)
+write_rds(dfEstD5, paste0(BASEDIR, "/dfEstD5.rds"))
+dfEstD5 <- read_rds(paste0(BASEDIR, "/dfEstD5.rds"))
 
-# library("rstan")
-# options(mc.cores = parallel::detectCores())
-# rstan_options(auto_write = TRUE)
-# oModel_F2 <- stan_model(file = 'EstF2.stan')
-# oModel_F5 <- stan_model(file = 'EstF5.stan')
-# 
-# dfEstF2 <- makeEstF.1 (dfData, oModel_F2)
-# write_rds(dfEstF2, paste0(BASEDIR, "/dfEstF2.rds"))
-# dfEstF2 <- read_rds(paste0(BASEDIR, "/dfEstF2.rds"))
+dfEstE5 <- makeEstE5.1 (dfData, BASEDIR, WORKDIR)
+write_rds(dfEstE5, paste0(BASEDIR, "/dfEstE5.rds"))
+dfEstE5 <- read_rds(paste0(BASEDIR, "/dfEstE5.rds"))
 
-# dfEstF5 <- makeEstF.1 (dfData, oModel_F5)
-# write_rds(dfEstF5, paste0(BASEDIR, "/dfEstF5.rds"))
-# dfEstF5 <- read_rds(paste0(BASEDIR, "/dfEstF5.rds"))
+library("rstan")
+options(mc.cores = parallel::detectCores())
+rstan_options(auto_write = TRUE)
+oModel_F2 <- stan_model(file = 'EstF2.stan')
+oModel_F5 <- stan_model(file = 'EstF5.stan')
 
-# dfEstStat <- makeEstStat.1(
-#   dfEstA1, dfEstA3, dfEstB2, dfEstB3, dfEstB4, dfEstC2, dfEstD5,
-#   dfEstE5, dfEstF2, dfEstF5
-# )
-# write_rds(dfEstStat, paste0(BASEDIR, "/dfEstStat.rds"))
-# dfEstStat <- read_rds(paste0(BASEDIR, "/dfEstStat.rds"))
+dfEstF2 <- makeEstF.1 (dfData, oModel_F2)
+write_rds(dfEstF2, paste0(BASEDIR, "/dfEstF2.rds"))
+dfEstF2 <- read_rds(paste0(BASEDIR, "/dfEstF2.rds"))
 
-# plotData.1 <- plotData.1 (dfData, WORKDIR)
-# plotDFtest.1 (dfDFtest, WORKDIR)
-# plotEstB2.2 (dfEstB2, WORKDIR)
+dfEstF5 <- makeEstF.1 (dfData, oModel_F5)
+write_rds(dfEstF5, paste0(BASEDIR, "/dfEstF5.rds"))
+dfEstF5 <- read_rds(paste0(BASEDIR, "/dfEstF5.rds"))
 
-# plotEstStat.1 (dfEstStat, WORKDIR)
-# plotEstStat.2 (dfEstStat, WORKDIR)
-# plotEstStat.3 (dfEstStat, WORKDIR)
+dfEstStat <- makeEstStat.1(
+  dfEstA1, dfEstA3, dfEstB2, dfEstB3, dfEstB4, dfEstC2, dfEstD5,
+  dfEstE5, dfEstF2, dfEstF5
+)
+write_rds(dfEstStat, paste0(BASEDIR, "/dfEstStat.rds"))
+dfEstStat <- read_rds(paste0(BASEDIR, "/dfEstStat.rds"))
+
+plotData.1 <- plotData.1 (dfData, WORKDIR)
+plotDFtest.1 (dfDFtest, WORKDIR)
+plotEstB2.2 (dfEstB2, WORKDIR)
+
+plotEstStat.1 (dfEstStat, WORKDIR)
+plotEstStat.2 (dfEstStat, WORKDIR)
+plotEstStat.3 (dfEstStat, WORKDIR)
 plotEstStat.4 (dfEstStat, WORKDIR)
